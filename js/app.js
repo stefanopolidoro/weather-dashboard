@@ -8,6 +8,11 @@ const humidity = document.getElementById('humidity');
 const wind = document.getElementById('wind');
 const feelsLike = document.getElementById('feels-like');
 
+const weatherIcon = document.getElementById('weather-icon');
+
+const errorMsg = document.getElementById('error-msg');
+
+
 // fetch(`https://api.openweathermap.org/data/2.5/weather?q=Napoli&appid=${API_KEY}&units=metric&lang=it`)
 //   .then(response => response.json())
 //   .then(data => {
@@ -21,7 +26,18 @@ async function getWeather(city) {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=it`);
     const data = await response.json();
     
+    // If city not found
+    if(data.cod === '404') {
+        errorMsg.style.display = 'block';
+        return;
+    }
+
+    // Hide error if previously shown
+    errorMsg.style.display = 'none';
+
+    // Update DOM with weather data
     cityName.textContent = data.name;
+    weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
     temperature.textContent = `${data.main.temp}°C`;
     description.textContent = data.weather[0].description;
     humidity.textContent = `Umidità: ${data.main.humidity}%`;
@@ -29,6 +45,7 @@ async function getWeather(city) {
     feelsLike.textContent = `Percepita: ${Math.round(data.main.feels_like)}°C`;
   } catch (error) {
     console.error('Errore:', error);
+    errorMsg.style.display = 'block';
   }
 }
 
