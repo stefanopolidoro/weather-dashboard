@@ -41,7 +41,7 @@ async function getWeather(city) {
         // Update DOM with weather data
         cityName.textContent = data.name;
         weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-        temperature.textContent = `${data.main.temp}°C`;
+        temperature.textContent = `${Math.round(data.main.temp)}°C`;
         description.textContent = data.weather[0].description;
         humidity.textContent = `Umidità: ${data.main.humidity}%`;
         wind.textContent = `Vento: ${Math.round(data.wind.speed * 3.6)} km/h`;
@@ -145,7 +145,7 @@ async function getWeatherByCoords(lat, lon) {
         // Update DOM with weather data
         cityName.textContent = data.name;
         weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-        temperature.textContent = `${data.main.temp}°C`;
+        temperature.textContent = `${Math.round(data.main.temp)}°C`;
         description.textContent = data.weather[0].description;
         humidity.textContent = `Umidità: ${data.main.humidity}%`;
         wind.textContent = `Vento: ${Math.round(data.wind.speed * 3.6)} km/h`;
