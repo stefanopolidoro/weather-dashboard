@@ -134,3 +134,16 @@ h1 {
 #geo-btn:hover {
     background: #f0f0f0;
 }
+
+/* Error message */
+#error-msg {
+    display: none;
+    background-color: #fff5f5;
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}

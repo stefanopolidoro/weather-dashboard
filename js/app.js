@@ -27,6 +27,8 @@ async function getWeather(city) {
         // If city not found
         if(data.cod === '404') {
             errorMsg.style.display = 'block';
+            meteo.style.display = 'none';
+            forecast.innerHTML = '';
             return;
         }
 
