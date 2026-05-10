@@ -1,6 +1,7 @@
 // DOM elements
 const searchBtn = document.getElementById('search-btn');
 
+const meteo = document.getElementById('meteo');
 const cityInput = document.getElementById('city-input');
 const cityName = document.getElementById('city-name');
 const temperature = document.getElementById('temperature');
@@ -29,6 +30,9 @@ async function getWeather(city) {
 
         // Hide error if previously shown
         errorMsg.style.display = 'none';
+
+        // Show weather card
+        meteo.style.display = 'block';
 
         // Update DOM with weather data
         cityName.textContent = data.name;
@@ -82,6 +86,7 @@ async function getForecast(city) {
             });
 
             const card = document.createElement('div');
+            card.classList.add('forecast-card');
             card.innerHTML = `
                 <p>${date}</p>
                 <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="${day.weather[0].description}" />
